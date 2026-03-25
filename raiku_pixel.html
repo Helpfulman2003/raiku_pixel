@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pixel Dragon</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+canvas { image-rendering: pixelated; image-rendering: crisp-edges; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const P = {
+  T: null,
+  N: '#0a0b0e',
+  B: '#20242a',
+  b: '#32363c',
+  s: '#464a50',
+  W: '#787a7d',
+  G: '#39ff14',
+  g: '#1ca008',
+  e: '#b4dc64',
+};
+
+const ROWS = [
+  "TTTTTTTTTeWTTTTTTTTTeWTTTTTTTTTT",
+  "TTTTTTTTeeWTTTTTTTTTeWWTTTTTTTTT",
+  "TTTTTTTTsesTTTTTTTTTWeseTTTTTTTT",
+  "TTTTTTTWegbWbBBBBBWWegeWTTTTTTTT",
+  "TTTTTTessNBssbbbbbsBsggWTTTTTTTT",
+  "TTTTTTWBeBbbbbbbbbbBggNsTTTTTTTT",
+  "TTTTTesbbBbbbbbbbbbBbBbBsTTTTTTT",
+  "TTTTTssbBbbbbbbbbbbbBbbbBWTTTTTT",
+  "TTTTWbbbbbbbbbbbbbbbbbbbbNeTTTTT",
+  "TTTTssbBBBBbbbbbbbbBBBBbbBWTTTTT",
+  "TTTebbNBbbBBbbbbbbBBbbBBbBBeTTTT",
+  "TTTssBBbbbbNbbbbbBBbbbbBbbNeTTTT",
+  "TTTsbNNNBBBNBbbbbNNBBBBBBbBWTTTT",
+  "TTTsbsWBgGbsBbbbbbbgegsWBbBsTTTT",
+  "TTTssbWsggssBBBbbbssgWWWBbBsTTTT",
+  "TTebbBWWssWbbssbbBsssWWBbbBsTTTT",
+  "TTebbbBsssBbBBbNbbBbssBBbBBsTTTT",
+  "TTebbbbBBBbbbbbbbbbbBBbbbBNWTTTT",
+  "TTeBbbbbbbbbbBBbbbbbbbbbbBNeTTTT",
+  "TTTWBbbbbbbbBBBBBbbbbbbbBBWTTTTT",
+  "TTTTWBBbbbbbbbbbbbbbbbbBBWTTTTTT",
+  "TTTTTsNBBbbbbbbbbbbbbBBNWTTTTTTT",
+  "TTTTTTsNNBBBbbbbbBBBBNNsTTTTTTTT",
+  "TTTTTWsBBNBBBBBBBBBBBBbbWTTTTTTT",
+  "TTTTesbbbbBBBBBBBBBBbbbbbeTTTTTT",
+  "TTTTssbNBbbbbbbbbbbbbbNbbsTTTTTT",
+  "TTTWsbBNbbbseeeeeebbbbBBbsWTTTTT",
+  "TTesbbNBbbbbssWbeesbbbBNbbbeTTTT",
+  "TTWbbBNBbbbseeeWesbbbbBNBbbseTTT",
+  "TesbbBNbbbseesseeebbbbbNBbbbWTTT",
+  "TWbbbBNbbbsssbbsssbbbbbBNbbssTTT",
+  "TsbbbNBbbbbbbbbbbbbbbbbBNBbbbeTT",
+  "TbbbBNBbbbbbbbbbbbbbbbbBNBbbBeTT",
+  "WBbbBNBbbbbbbbbbbbbbbbbBNBbbBsTT",
+  "bBBBBNBbbbbbbbbbbbbbbbbBNNBBBbeT",
+  "eBBsNNBBbbbbbbbbbbbbbbBBNNbBBWTT",
+  "TWWTTWBBbbbbbbbbbbbbbbBBNTTeWTTT",
+  "TTTTTWBBBBbbbbbbbbbbBBBBsTTTTTTT",
+  "TTTTTTNBBBBBbbbbbbBBBBBBWTTTTTTT",
+  "TTTTTTbBbBBBNNNNNNNBBbbBWeTTTTTT",
+  "TTTTTTWBbbbBBNNbNNBbbbBNWWeeTTTT",
+  "TTTTTTeNbbbBBWBbBNBbbbBNbBWWWeWs",
+  "TTTTTTTWBbbBBeebbNBBbbNBbbBbBBBW",
+  "TTTTTTTeBBBBbTTTWBBBBBNBBBBBBBWT",
+  "TTTTTTTsBBbBbTTTTWBbBbBNBBBsWeTT",
+  "TTTTTTWNBNBbWTTTTesNBBNNTTTTTTTT",
+];
+
+const S = 8, W = 32, H = 46;
+const c = document.getElementById('c');
+c.width = W * S; c.height = H * S;
+const ctx = c.getContext('2d');
+
+for (let y = 0; y < H; y++) {
+  for (let x = 0; x < W; x++) {
+    const col = P[ROWS[y][x]];
+    if (!col) continue;
+    ctx.fillStyle = col;
+    ctx.fillRect(x*S, y*S, S, S);
+  }
+}
+</script>
+</body>
+</html>
